@@ -15,7 +15,15 @@ export default logLevels.reduce((logger, funcName, index) => {
 			const enabledLevelIndex = logLevels.indexOf(logging.toString().toLocaleLowerCase());
 			if (logging === true || (enabledLevelIndex > -1 && index >= enabledLevelIndex)) {
 				const [message, ...rest] = [...args];
-				console[consoleFunc](`${funcName.toUpperCase()} - (CMP) ${message}`, ...rest);
+				console[consoleFunc](`[CMP] ${funcName.toUpperCase()} - ${message}`, ...rest);
+			//if (message.indexOf("Notify event") > -1) {
+				//try {
+				//window.forwardedCmpEvents(message);
+				//} catch (e) {
+				//console.log("ERRORERRORERROR");
+				//console.log(e);
+				//}
+			//}
 			}
 		}
 	};

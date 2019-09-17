@@ -18,6 +18,7 @@ class PurposesLabel extends Label {
 
 const PANEL_COLLECTED = 0;
 const PANEL_PURPOSE = 1;
+const PANEL_FEATURE = 2;
 
 
 export default class Banner extends Component {
@@ -80,6 +81,7 @@ export default class Banner extends Component {
 					color: textLightColor
 				}}
 			>
+                            
 				<div class={style.content}>
 					<div
 						class={style.message}
@@ -87,12 +89,15 @@ export default class Banner extends Component {
 					>
 						<div class={style.info}>
 							<div class={style.title} style={{ color: textColor }}>
+								<img class={style.logoimage} src="https://gedi.mgr.consensu.org/kwcmp/icon_gedidigital.jpg" />
 								<LocalLabel localizeKey='title'>Ads help us run this site</LocalLabel>
+								<br clear="all" />
 							</div>
 							<LocalLabel localizeKey='description'>
-								When you visit our site, <a onClick={this.handleVendorListClick}>pre-selected companies</a> may access and use certain
-								information on your device and about this site to serve relevant ads or personalized content.
+								When you visit our site, pre-selected companies may access and use certain
+								information on your device and about this site to serve relevant ads or personalized content. If you click on "CONTINUE TO SITE", you accept this use. If you want to know more or personalize your choices, specifying which use you want to give consent to, click on the two other buttons. You will be able to change again your preferences by clicking on the link Cookie Preferences at the bottom of the page.
 							</LocalLabel>
+							
 							<div class={style.options}>
 								<div
 									class={[style.option, selectedPanelIndex === PANEL_COLLECTED && isExpanded ? style.expanded : ''].join(' ')}>
@@ -149,19 +154,68 @@ export default class Banner extends Component {
 												<li class={style.purposeItem}>
 													<a class={style.learnMore} onClick={this.handlePurposeItemClick(purposeItem)} style={{color: textLinkColor}}>
 														<PurposesLabel localizeKey={`purpose${purposeItem.id}.menu`}>{purposeItem.name}</PurposesLabel>
-													</a>
+													</a><br />
+														<PurposesLabel class={style.purposeDescription} localizeKey={`purpose${purposeItem.id}.description`}>{purposeItem.description}</PurposesLabel>
 												</li>
 											))}
 										</ul>
 									</div>
+									
+								</div>
+								<div
+									class={[style.option, selectedPanelIndex === PANEL_FEATURE && isExpanded ? style.expanded : ''].join(' ')}>
+									<a
+										onClick={this.handleInfo(PANEL_FEATURE)}
+										class={style.detailExpand}
+									>
+										<ChevronIcon color={textLinkColor} />
+										<LocalLabel localizeKey='links.features.title'>Features</LocalLabel>
+									</a>
+
+									<div
+										class={style.optionDetails}
+										style={{ color: textLightColor }}
+									>
+										<ul>
+												<li class={style.purposeItem}>
+													<LocalLabel class={style.featureName} localizeKey='links.features.feature1.name'>Matching Data to Offline Sources</LocalLabel>
+													<br />
+													<LocalLabel class={style.featureDescription} localizeKey='links.features.feature1.description'>Combining data from offline sources that were initially collected in other contexts.</LocalLabel>
+												</li>
+												<li class={style.purposeItem}>
+													<LocalLabel class={style.featureName} localizeKey='links.features.feature2.name'>Linking Devices</LocalLabel>
+													<br />
+													<LocalLabel class={style.featureDescription}  localizeKey='links.features.feature2.description'>Allow processing of a user's data to connect such user across multiple devices.</LocalLabel>
+												</li>
+												<li class={style.purposeItem}>
+													<LocalLabel class={style.featureName} localizeKey='links.features.feature3.name'>Precise Geographic Location Data</LocalLabel>
+													<br />
+													<LocalLabel class={style.featureDescription}  localizeKey='links.features.feature3.description'>Allow processing of a user's precise geographic location data in support of a purpose for which that certain third party has consent.</LocalLabel>
+												</li>
+										</ul>
+									</div>
+									
+								</div>
+								<div class={style.optionDetails} style={{ color: textLightColor }}>	
+									<a class={style.learnMore} onClick={this.handleVendorListClick} style={{color: textLinkColor}}>
+										<LocalLabel localizeKey='descriptionvendorlink'>
+											View pre-selected companies list
+										</LocalLabel>
+									</a>
 								</div>
 							</div>
 						</div>
 						<div class={style.consent}>
+                                                        <a class={style.learnMore} href="javascript:window.kw_customizeInfoPrivacy()"
+							   style={{ color: primaryColor, borderColor: primaryColor }}>
+								<LocalLabel localizeKey='links.infoprivacy'>Know More</LocalLabel>
+							</a>
+                                                      
 							<a class={style.learnMore} onClick={this.handleLearnMore}
 							   style={{ color: primaryColor, borderColor: primaryColor }}>
 								<LocalLabel localizeKey='links.manage'>Manage Your Choices</LocalLabel>
 							</a>
+                                                      
 							<a
 								class={style.continue}
 								onClick={onSave}

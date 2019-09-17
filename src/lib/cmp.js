@@ -1,10 +1,7 @@
 import log from './log';
 import config from './config';
 import { encodeVendorConsentData } from './cookie/cookie';
-import {
-	encodeVendorCookieValue,
-	encodePublisherCookieValue
-} from "./cookie/cookieutils";
+import { encodeVendorCookieValue, encodePublisherCookieValue } from "./cookie/cookieutils";
 
 export const CMP_GLOBAL_NAME = '__cmp';
 export const CMP_CALL_NAME = CMP_GLOBAL_NAME + 'Call';
@@ -25,6 +22,17 @@ export default class Cmp {
 		/**
 		 * Get all publisher consent data from the data store.
 		 */
+		enablePurpose: (id, state) => {
+			if (id === "all") {
+				this.store.selectAllPurposes(state);
+				console.log("Set All Purposes to state " + state);
+			} else if (id !== "" && id !== "all") {
+				if (typeof state === "boolean") {
+					this.store.selectPurpose(id, state);
+					console.log("Set Single Purpose (" + id + ")  to state " + state);
+				}
+			}
+		},
 		getPublisherConsents: (purposeIds, callback = () => {}) => {
 			const {
 				persistedPublisherConsentData,
@@ -63,7 +71,7 @@ export default class Cmp {
 		getVendorConsents: (vendorIds, callback = () => {}) => {
 
 			// Encode limited fields for "metadata"
-			const { persistedVendorConsentData } = this.store;
+			const {persistedVendorConsentData} = this.store;
 			const metadata = persistedVendorConsentData && encodeVendorCookieValue(persistedVendorConsentData, [
 				'cookieVersion',
 				'created',
@@ -101,12 +109,11 @@ export default class Cmp {
 		 * Get the entire vendor list
 		 */
 		getVendorList: (vendorListVersion, callback = () => {}) => {
-			const { vendorList } = this.store;
-			const { vendorListVersion: listVersion } = vendorList || {};
+			const {vendorList} = this.store;
+			const {vendorListVersion: listVersion} = vendorList || {};
 			if (!vendorListVersion || vendorListVersion === listVersion) {
 				callback(vendorList, true);
-			}
-			else {
+			} else {
 				callback(null, false);
 			}
 		},
@@ -130,10 +137,10 @@ export default class Cmp {
 
 			// Trigger load events immediately if they have already occurred
 			if (event === 'isLoaded' && this.isLoaded) {
-				callback({ event });
+				callback({event});
 			}
 			if (event === 'cmpReady' && this.cmpReady) {
-				callback({ event });
+				callback({event});
 			}
 		},
 
@@ -198,7 +205,6 @@ export default class Cmp {
 			vendorList
 		});
 	};
-
 	processCommandQueue = () => {
 		const queue = [...this.commandQueue];
 		if (queue.length) {
@@ -216,22 +222,20 @@ export default class Cmp {
 								success
 							}
 						}, event.origin));
-				}
-				else {
+				} else {
 					this.processCommand(command, parameter, callback);
 				}
 			});
 		}
 	};
-
 	/**
 	 * Handle a message event sent via postMessage to
 	 * call `processCommand`
 	 */
 	receiveMessage = ({ data, origin, source }) => {
-		const { [CMP_CALL_NAME]: cmp } = data;
+		const {[CMP_CALL_NAME]: cmp} = data;
 		if (cmp) {
-			const { callId, command, parameter } = cmp;
+			const {callId, command, parameter} = cmp;
 			this.processCommand(command, parameter, (returnValue, success) =>
 				source.postMessage({
 					[CMP_RETURN_NAME]: {
@@ -243,13 +247,13 @@ export default class Cmp {
 				}, origin));
 		}
 	};
-
 	/**
 	 * Call one of the available commands.
 	 * @param {string} command Name of the command
 	 * @param {*} parameter Expected parameter for command
 	 */
 	processCommand = (command, parameter, callback) => {
+		console.log("[CMP LOG] COMMAND RECEIVED", "COMMAND", command, "persistedVendorConsentData", this.store.persistedVendorConsentData, "persistedPublisherConsentData", this.store.persistedPublisherConsentData);
 		if (typeof this.commands[command] !== 'function') {
 			log.error(`Invalid CMP command "${command}"`);
 		}
@@ -265,13 +269,12 @@ export default class Cmp {
 				parameter,
 				callback
 			});
-		}
-		else {
+		} else {
 			log.info(`Proccess command: ${command}, parameter: ${parameter}`);
 			this.commands[command](parameter, callback);
 		}
-	};
-
+	}
+	;
 	/**
 	 * Trigger all event listener callbacks to be called.
 	 * @param {string} event Name of the event being triggered
@@ -281,7 +284,7 @@ export default class Cmp {
 		log.info(`Notify event: ${event}`);
 		const eventSet = this.eventListeners[event] || new Set();
 		eventSet.forEach(listener => {
-			listener({ event, data });
+			listener({event, data});
 		});
 
 		// Process any queued commands that were waiting for consent data

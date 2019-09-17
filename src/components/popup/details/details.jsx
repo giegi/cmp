@@ -29,7 +29,7 @@ export default class Details extends Component {
 
 	handleBack = () => {
 		this.props.onChangeDetailsPanel(SECTION_PURPOSES);
-	};
+	}; 
 
 	handlePurposeClick = purposeItem => {
 		const {
@@ -40,9 +40,24 @@ export default class Details extends Component {
 		onChangeDetailsPanel(SECTION_VENDORS);
 		onSelectPurpose(purposeItem);
 	};
+        handleGeneralPurposeClick = state => {
+            console.log("Clicked on general acceptance....", state, this.props);
+            this.props.store.selectAllPurposesAndVendors(state);
+	};
+        handleCustomPurposeClick = (customPurposeItem, visitedCustomPurposes) => {
+            const {			
+			onSelectCustomPurpose,
+		} = this.props;
 
+		//console.log("customPurposeItem", customPurposeItem);
+                //console.log("visitedCustomPurposes", visitedCustomPurposes);
+                this.props.store.selectCustomPurpose();
+		onSelectCustomPurpose(customPurposeItem, this.visitedCustomPurposes);
+	};
+        visitedCustomPurposes = {};
 
 	render(props, state) {
+            console.log("renderizzato");
 		const {
 			onSave,
 			onClose,
@@ -63,7 +78,7 @@ export default class Details extends Component {
 		} = theme;
 		const {
 			vendorList = {},
-			customPurposeList = {},
+			customPurposeList = {},                        
 			vendorConsentData,
 			publisherConsentData,
 			selectPurpose,
@@ -71,11 +86,29 @@ export default class Details extends Component {
 			selectAllVendors,
 			selectVendor
 		} = store;
+                
+                
 		const { selectedPurposeIds, selectedVendorIds } = vendorConsentData;
 		const { selectedCustomPurposeIds } = publisherConsentData;
 		const { purposes = [], vendors = [] } = vendorList;
 		const { purposes: customPurposes = [] } = customPurposeList;
-
+                
+                for(var prop in this.visitedCustomPurposes) {
+                    console.log("RESULT", prop);
+                }
+                console.log("VisitedCustomPurposes is empty?", JSON.stringify(this.visitedCustomPurposes) === JSON.stringify({}));
+                
+                console.log("DETAILS.jsx visitedCustomPurposes (1)", this.visitedCustomPurposes, this.visitedCustomPurposes.length);        
+                console.log("DETAILS.jsx customPurposeList", customPurposeList);                
+                console.log("DETAILS.jsx publisherConsentData", publisherConsentData.selectedCustomPurposeIds);
+                if(JSON.stringify(this.visitedCustomPurposes) === JSON.stringify({}) === true) {
+                    publisherConsentData.selectedCustomPurposeIds.forEach( a => {
+                        //console.log(a);
+                        this.visitedCustomPurposes[a] = true; 
+                    });
+                }                
+                console.log("DETAILS.jsx visitedCustomPurposes (2)", this.visitedCustomPurposes, this.visitedCustomPurposes.length);
+                
 		const formattedVendors = vendors
 			.map(vendor => ({
 				...vendor,
@@ -92,7 +125,12 @@ export default class Details extends Component {
 					<Panel selectedIndex={selectedPanelIndex}>
 						<Summary
 							purposes={purposes}
+                                                        customPurposes={customPurposes}
+                                                        visitedCustomPurposes={this.visitedCustomPurposes}
+                                                        publisherConsentData={publisherConsentData}
 							onPurposeClick={this.handlePurposeClick}
+                                                        onCustomPurposeClick={this.handleCustomPurposeClick}
+                                                        onGeneralPurposeClick={this.handleGeneralPurposeClick}
 							onVendorListClick={this.handlePanelClick(SECTION_VENDOR_LIST)}
 							onPurposeListClick={this.handlePanelClick(SECTION_PURPOSE_LIST)}
 							theme={theme}

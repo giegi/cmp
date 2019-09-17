@@ -21,6 +21,7 @@ const portalCallMap = {};
  */
 function openGlobalVendorPortal() {
 	// Only ever create a single iframe
+        
 	if (!globalVendorPortal) {
 		globalVendorPortal = new Promise((resolve, reject) => {
 			const url = config.globalConsentLocation;
@@ -32,7 +33,11 @@ function openGlobalVendorPortal() {
 			let portalTimeout = setTimeout(() => {
 				reject(new Error(`Communication could not be established with the vendor domain within ${PORTAL_LOAD_TIMEOUT_MILLISECONDS} milliseconds`));
 			}, PORTAL_LOAD_TIMEOUT_MILLISECONDS);
-
+			/*window.addEventListener("message", t => {
+				console.log("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°");
+				console.log(t);
+				console.log("°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°");
+			});*/
 			// Add listener for messages from iframe
 			window.addEventListener('message', event => {
 				// Only look at messages with the vendorConsent property

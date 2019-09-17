@@ -1,7 +1,14 @@
 import { h, Component } from 'preact';
 import style from './summary.less';
+import Switch from '../../../switch/switch';
 import detailsStyle from '../details.less';
 import Label from "../../../label/label";
+
+class LocalLabel extends Label {
+	static defaultProps = {
+		prefix: 'banner'
+	};
+}
 
 class SummaryLabel extends Label {
 	static defaultProps = {
@@ -28,24 +35,40 @@ export default class Summary extends Component {
 			this.props.onPurposeClick(purposeItem);
 		};
 	};
+        
+        handleGeneralePurposeClick = purposeItem => {
+		return () => {
+			this.props.onGeneralPurposeClick(purposeItem);
+		};
+	};
+        handleCustomPurposeItemClick = (customPurposeItem, visitedCustomPurposes) => {
+                return () => {
+			this.props.onCustomPurposeClick(customPurposeItem, visitedCustomPurposes);
+		};
+	};
 
 	render(props, state)
 	{
 		const {
 			purposes,
+                        customPurposes,
+                        visitedCustomPurposes,
+                        publisherConsentData,
 			onVendorListClick,
 			onPurposeListClick,
 			theme,
 		} = props;
-
+                
 		const {
 			textColor,
+                        primaryColor,
 			dividerColor,
 			textLinkColor
-		} = theme;
-
+		} = theme;  
+               // console.log("visitedCustomPurposes", visitedCustomPurposes);
 		return (
 			<div class={style.summary}>
+				
 				<div class={detailsStyle.title} style={{color: textColor}}>
 					<SummaryLabel localizeKey='title'>Learn more about how information is being used?</SummaryLabel>
 				</div>
@@ -55,6 +78,10 @@ export default class Summary extends Component {
 					customize your choices below or continue using our site if you're OK with the purposes.
 					</SummaryLabel>
 				</div>
+                                
+                <div class={style.customPurposeSeparator}>
+					<LocalLabel localizeKey='links.purposes.titleGeneral'>Third Party Vendors</LocalLabel>
+				</div>                
 				<div class={style.purposeItems}>
 					{purposes.map((purposeItem, index) => (
 						<div class={style.purposeItem} style={{borderColor: dividerColor}}>
@@ -65,6 +92,43 @@ export default class Summary extends Component {
 						</div>
 					))}
 				</div>
+                                
+                                
+                                
+				<div class={detailsStyle.description} style="display:none; margin-bottom: 30px;">
+					<center>
+						<a id="acceptGeneral" class={detailsStyle.selectAllConds} onClick={this.handleGeneralePurposeClick(true)} style="background-color: #FFFFFF;display: block;float: left;width: 40%;margin: 0 5%0 5%;">
+							<SummaryLabel localizeKey='acceptAll'>Accetta Tutto</SummaryLabel>
+						</a>
+						<a id="denyGeneral" class={detailsStyle.selectAllConds}  onClick={this.handleGeneralePurposeClick(false)} style={{color: textLinkColor}} style="background-color: #FFFFFF;display: block;float: left;width: 40%;margin: 0 5%0 5%;">
+							<SummaryLabel localizeKey='denyAll'>Rifiuta Tutto</SummaryLabel>
+						</a>
+					</center>
+				</div>
+				<div class={style.customPurposeSeparator}>
+					<LocalLabel localizeKey='links.purposes.titleCustom'>Other</LocalLabel>
+				</div>
+				<div class={style.customPurposeItems}>
+					{customPurposes.map((customPurposeItem, zindex) => (
+					<div>
+						<div class={style.customPurposeItem} style={{borderColor: dividerColor}}>
+								<span class={style.customPurposeTitle}><PurposesLabel localizeKey={`customPurpose${customPurposeItem.id}.menu`}>{customPurposeItem.name}</PurposesLabel></span>
+
+								<Switch
+										class={style.customPurposeSwitch}
+										color={primaryColor} 
+										dataId={customPurposeItem.id}
+										isSelected= {visitedCustomPurposes[customPurposeItem.id]}
+										onClick={this.handleCustomPurposeItemClick(customPurposeItem, visitedCustomPurposes)}
+								/>
+								<br clear="all" />
+						</div>
+						<p class={style.customPurposeDesc} dangerouslySetInnerHTML={{__html: customPurposeItem.description}} />
+					</div>    
+
+					))}
+				</div>
+                                
 				<div class={detailsStyle.title} style={{color: textColor}}>
 					<SummaryLabel localizeKey='who.title'>Who is using this information?</SummaryLabel>
 				</div>
