@@ -5,6 +5,51 @@
 	<title>GDPR Documentation</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
 	<meta name="apple-mobile-web-app-capable" content="yes">
+        
+        <script>
+            
+            window.kwdnt = 1;
+            function listenerCmpEvents(cmpEvent) {
+				console.log("[CMP LOG] CMP EVENT!!!!!! ", cmpEvent);
+//                if(cmpReadyEvent.event === "cmpReady") {
+//                   window.cmpInterval = setTimeout(function() {__cmp("showConsentTool"); }, 200);
+//                    __cmp("getVendorConsents", null, function(e) {__cmp("getPublisherConsents", null, function(e) {clearTimeout(window.cmpInterval); }); });
+//                    
+//                }
+            }
+            function forwardedCmpEvents(evt) {
+                return;
+		try {
+			if(evt == "Notify event: isLoaded") {
+				
+				console.log("%c[CMP LOG] %c ", 'padding: 2px; background: yellow; color: #000', 'padding: 2px; color: #00F', evt);
+			}
+			if(evt == "Notify event: cmpReady") {
+				console.log("%c[CMP LOG] %c ", 'padding: 2px; background: yellow; color: #000', 'padding: 2px; color: #00F', evt);
+				try {
+					window.kw_cmp_cmpReady = true;                   
+					window.cmpLoadWrapper(); 
+					console.log("%c[CMP LOG] %c Called mnz_advReady - Manzoni can refresh ADV", 'padding: 2px; background: yellow; color: #000', 'padding: 2px; color: #00F');
+				} catch(e) { 
+					console.log("%c[CMP ERROR] %c Did not find kwcmpReady function in adv configuration", 'padding: 2px; background: yellow; color: #000', 'padding: 2px; color: #00F');
+				}
+				try { 
+					kw_tlh_cmp_complete(); 
+					console.log("%c[CMP LOG] %c Called kw_tlh_cmp_complete - FE VIDEO Async ADV can be launched", 'padding: 2px; background: yellow; color: #000', 'padding: 2px; color: #00F');
+				} catch(e) { 
+					console.log("%c[CMP LOG] %c Did not find FE VIDEO TLH in page. Not worrying about writing adv in page", 'padding: 2px; background: yellow; color: #000', 'padding: 2px; color: #00F');
+				}
+				try {
+					console.log("Getting Publisher Consent For PersonalizedAds");
+					__cmp("getPublisherConsents", "", function(result) { window.kwCmpPurposes = {"standardPurposes":result.standardPurposes, "customPurposes":result.customPurposes}});
+				} catch(e) {
+					console.log(e);
+					window.kwCmpPurposes = null;
+				}
+			}
+		} catch(e) {}
+	}
+        </script>
 	<script>
 		(function(window) {
 			window.__cmp = (function() {
@@ -34,14 +79,23 @@
 					}
 				};
 				cmp.config = {
-					customPurposeListLocation: 'docs/purposes.json',
-					globalConsentLocation: 'docs/portal.html'
+					customPurposeListLocation: 'purposes.json',
+					globalConsentLocation: 'docs/portal.html',                                        
+					storeConsentGlobally: true,
+					gdprApplies: true,
+					forceLocale: 'en',
+					storePublisherData: true,
+					gdprAppliesGlobally: true,
+					logging: 'debug',
 				};
 				return cmp;
 			}());
 		})(window);
-
-		__cmp('showConsentTool');
+		
+		__cmp("addEventListener", "onSubmit", listenerCmpEvents)
+		__cmp("addEventListener", "isLoaded", listenerCmpEvents)
+		__cmp("addEventListener", "cmpReady", listenerCmpEvents)
+		//__cmp('showConsentTool', false);
 	</script>
 </head>
 <body>

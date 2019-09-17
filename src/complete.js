@@ -9,39 +9,70 @@ import log from './lib/log';
 import { init } from './lib/init';
 import { CMP_GLOBAL_NAME, CMP_CALL_NAME, CMP_LOCATOR_NAME } from "./lib/cmp";
 
-function handleConsentResult(cmp, {vendorListVersion: listVersion} = {}, {created, vendorListVersion} = {}) {
+function handleConsentResult(cmp, {vendorListVersion: listVersion} = {}, {created, vendorListVersion} = {}, publisherConsents) {
+	try {
+		//console.log("[CMP LOG] - handleConsentResult");
+		//console.log("[CMP LOG] - vendorlistVersion", vendorListVersion);
+		//console.log("[CMP LOG] - listVersion", listVersion);
+		//console.log("[CMP LOG] - created", created);
+		//console.log("[CMP LOG] - config", config);
+		//console.log("[CMP LOG] - publisherConsents", publisherConsents);
+	} catch (e) {
+		console.log("[CMP LOG] - handleConsentResult ERROR");
+		console.log(e);
+	}
 	if (!created) {
 		log.debug('No consent data found. Showing consent tool');
 		cmp('showConsentTool');
-	}
-	else if (!listVersion) {
+	} else if (!listVersion) {
 		log.debug('Could not determine vendor list version. Not showing consent tool');
-	}
-	else if (vendorListVersion !== listVersion) {
-		log.debug(`Consent found for version ${vendorListVersion}, but received vendor list version ${listVersion}. Showing consent tool`);
+	} else if (vendorListVersion !== listVersion) {
+		log.debug('Consent found for version ${vendorListVersion}, but received vendor list version ${listVersion}. Showing consent tool');
 		cmp('showConsentTool');
-	}
-	else {
+	} else if (config.storePublisherData === true && !publisherConsents) {
+		log.debug('Vendor Consent found. But Publisher Consent is set to be stored and it\'s missing');
+		cmp('showConsentTool');
+	} else {
 		log.debug('Consent found. Not showing consent tool');
 	}
 }
 
 function checkConsent(cmp) {
+	try {
+		//console.log("[CMP LOG] - checkConsent",cmp);
+	} catch (e) {
+		//console.log("[CMP LOG] - checkConsent ERROR");
+		//console.log(e);
+	}
 	if (!cmp) {
 		log.error('CMP failed to load');
-	}
-	else if (!window.navigator.cookieEnabled) {
+	} else if (!window.navigator.cookieEnabled) {
 		log.warn('Cookies are disabled. Ignoring CMP consent check');
-	}
-	else {
+	} else {
 		cmp('getVendorList', null, vendorList => {
+			//console.log("[CMP LOG] - complete #1 Getting Vendor List");
+			
 			const timeout = setTimeout(() => {
+				//console.log("[CMP LOG] - complete #timeout1#", "STORE PUBLISHER DATA: "+config.storePublisherData);
 				handleConsentResult(cmp, vendorList);
 			}, 100);
-
+			
 			cmp('getVendorConsents', null, vendorConsents => {
+				//console.log("[CMP LOG] - complete #2 Getting Vendor Consent");
 				clearTimeout(timeout);
-				handleConsentResult(cmp, vendorList, vendorConsents);
+				if (config.storePublisherData === true) {
+					const timeout_publisher = setTimeout(() => {
+						//console.log("[CMP LOG] - complete #timeout2#", "STORE PUBLISHER DATA: "+config.storePublisherData);
+						handleConsentResult(cmp, vendorList, vendorConsents);
+					}, 100);
+					cmp('getPublisherConsents', null, publisherConsents => {
+						//console.log("[CMP LOG] - complete #3 Getting Publisher Consent", publisherConsents);
+						clearTimeout(timeout_publisher);
+						handleConsentResult(cmp, vendorList, vendorConsents, publisherConsents);
+					});
+				} else {
+					handleConsentResult(cmp, vendorList, vendorConsents);
+				}
 			});
 		});
 	}
@@ -62,8 +93,7 @@ function addLocatorFrame() {
 			frame.style.display = 'none';
 			frame.name = CMP_LOCATOR_NAME;
 			document.body.appendChild(frame);
-		}
-		else {
+		} else {
 			setTimeout(addLocatorFrame, 5);
 		}
 	}
