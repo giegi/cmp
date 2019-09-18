@@ -167,6 +167,7 @@ export default class Cmp {
 		showConsentTool: (_, callback = () => {}) => {
 			this.store.toggleConsentToolShowing(true);
 			callback(true);
+			this.notify('isShown');
 		},
 
 		/**
