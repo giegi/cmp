@@ -15,15 +15,17 @@ Feel free to modify for your own use.
 Reference and docs can be found here:
 http://acdn.origin.appnexus.net/cmp/docs/#/
 
-#### The Only Difference from original reference is the availability of 4 more ui events and 1 consent related event
+#### The Only Difference from original reference is the availability of 4 more ui events and 1 more consent related event
 	
 ```sh
+// new events
 __cmp("addEventListener", "isModalShown", listenerCmpEvents);
 __cmp("addEventListener", "isBannerShown", listenerCmpEvents);
 __cmp("addEventListener", "isModalHidden", listenerCmpEvents);
 __cmp("addEventListener", "isBannerHidden", listenerCmpEvents);
-__cmp("addEventListener", "onSubmit", listenerCmpEvents);
 __cmp("addEventListener", "onConsentChanged", listenerCmpEvents); //(only for complete bundle integrations)
+// existing events
+__cmp("addEventListener", "onSubmit", listenerCmpEvents);
 __cmp("addEventListener", "isLoaded", listenerCmpEvents);
 __cmp("addEventListener", "cmpReady", listenerCmpEvents);
 ```
