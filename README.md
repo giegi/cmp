@@ -27,7 +27,10 @@ __cmp("addEventListener", "isModalShown", listenerCmpEvents);
 __cmp("addEventListener", "isBannerShown", listenerCmpEvents);
 __cmp("addEventListener", "isModalHidden", listenerCmpEvents);
 __cmp("addEventListener", "isBannerHidden", listenerCmpEvents);
-__cmp("addEventListener", "onConsentChanged", listenerCmpEvents); //(only for complete bundle integrations)
+__cmp("addEventListener", "onConsentChanged", listenerCmpEvents); // *
+// * onConsentChanged event is available only for complete bundle integrations
+
+
 // existing events
 __cmp("addEventListener", "onSubmit", listenerCmpEvents);
 __cmp("addEventListener", "isLoaded", listenerCmpEvents);
