@@ -2,11 +2,14 @@
 
 # GEDI DIGITAL CMP
 
-### forked from AppNexus CMP
 
-This is the GEDI DIGITAL custom version of the AppNexus CMP. 
-This version has been certified by IAB. 
-This CMP contains some graphic personalization. 
+This is the GEDI DIGITAL CMP.
+This CMP is a fork of the AppNexus CMP, modified and adapted to satisfy specific needs and to pass the IAB validation.
+
+This modified version has been certified by IAB according to TCF 1.1
+and passes all the checks, automatic and manual ones, required by the TCF Validator.
+
+This CMP contains some graphic personalizations. 
 Feel free to modify for your own use.
 
 ### Installation
