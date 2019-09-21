@@ -1,6 +1,8 @@
 [![Build Status](https://travis-ci.org/appnexus/cmp.svg?branch=master)](https://travis-ci.org/appnexus/cmp)
 
-# GEDI DIGITAL CMP - forked from AppNexus CMP
+# GEDI DIGITAL CMP
+
+## forked from AppNexus CMP
 
 This is the GEDI DIGITAL custom version of the AppNexus CMP. 
 This version has been certified by IAB. 
