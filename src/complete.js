@@ -33,6 +33,7 @@ function handleConsentResult(cmp, {vendorListVersion: listVersion} = {}, {create
 		cmp('showConsentTool');
 	} else {
 		log.debug('Consent found. Not showing consent tool');
+		cmp('setDataAlreadyStored');
 	}
 }
 

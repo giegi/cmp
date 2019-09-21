@@ -19,21 +19,24 @@ export default class Cmp {
 		this.processCommand.receiveMessage = this.receiveMessage;
 		this.commandQueue = [];
 		this.showStatus = { isBannerShowing:false, isModalShowing:false };
-		
+		this.isConsentDataAlreadyStored = false;
 	}
 
 	commands = {
+		setDataAlreadyStored: () => {
+			this.isConsentDataAlreadyStored = true;
+		},
 		/**
 		 * Get all publisher consent data from the data store.
 		 */
 		enablePurpose: (id, state) => {
 			if (id === "all") {
 				this.store.selectAllPurposes(state);
-				console.log("Set All Purposes to state " + state);
+				//console.log("Set All Purposes to state " + state);
 			} else if (id !== "" && id !== "all") {
 				if (typeof state === "boolean") {
 					this.store.selectPurpose(id, state);
-					console.log("Set Single Purpose (" + id + ")  to state " + state);
+					//console.log("Set Single Purpose (" + id + ")  to state " + state);
 				}
 			}
 		},
@@ -192,13 +195,13 @@ export default class Cmp {
 		//console.log("[CMP LOG] STORECHANGED - store passed object", _store)
 		//console.log("[CMP LOG] STORE VISIBILITY: " + _store.isModalShowing + " = " + _store.isBannerShowing);
 		//console.log("[CMP LOG] this.showStatus VISIBILITY: " + this.showStatus.isModalShowing + " = " + this.showStatus.isBannerShowing);
-		if(_store.isBannerShowing === false && this.showStatus.isBannerShowing === true) {
+		if (_store.isBannerShowing === false && this.showStatus.isBannerShowing === true) {
 			this.notify("isBannerHidden");
-		} else if(_store.isBannerShowing === true && this.showStatus.isBannerShowing === false) {
+		} else if (_store.isBannerShowing === true && this.showStatus.isBannerShowing === false) {
 			this.notify("isBannerShown");
-		} else if(_store.isModalShowing === true && this.showStatus.isModalShowing === false) {
+		} else if (_store.isModalShowing === true && this.showStatus.isModalShowing === false) {
 			this.notify("isModalShown");
-		} else if(_store.isModalShowing === false && this.showStatus.isModalShowing === true) {
+		} else if (_store.isModalShowing === false && this.showStatus.isModalShowing === true) {
 			this.notify("isModalHidden");
 		}
 		this.showStatus.isModalShowing = _store.isModalShowing;
@@ -308,7 +311,12 @@ export default class Cmp {
 
 		// Process any queued commands that were waiting for consent data
 		if (event === 'onSubmit') {
+			//console.log("[CMP LOG] consent already stored", this.isConsentDataAlreadyStored);
+			if(this.isConsentDataAlreadyStored === true) {
+				this.notify("onConsentChanged");
+			}
 			this.processCommandQueue();
 		}
+		
 	};
 }

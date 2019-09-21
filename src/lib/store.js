@@ -216,8 +216,8 @@ export default class Store {
 		// Update version of list to one we are using
 		vendorConsentData.vendorListVersion = vendorListVersion;
 		publisherConsentData.vendorListVersion = vendorListVersion;
-		console.log("Publisher Consent Data", publisherConsentData);
-		console.log("Custom Purposes", this.customPurposeList);
+		//console.log("Publisher Consent Data", publisherConsentData);
+		//console.log("Custom Purposes", this.customPurposeList);
 		publisherConsentData.created = publisherConsentData.created || now;
 		publisherConsentData.lastUpdated = now;
 
@@ -268,34 +268,34 @@ export default class Store {
 	selectAllVendors = (isSelected, purposeId) => {
 		const {vendors = []} = this.vendorList || {};
 		const operation = isSelected ? 'add' : 'delete';
-		console.log("VENDORS BEFORE", "PURPOSE", purposeId, "LIST", this.vendorConsentData.selectedVendorIds);
+		//console.log("VENDORS BEFORE", "PURPOSE", purposeId, "LIST", this.vendorConsentData.selectedVendorIds);
 		vendors.forEach(({id, purposeIds = []}) => {
 			// If a purposeId is supplied only toggle vendors that support that purpose
 			if (typeof purposeId !== 'number' || purposeIds.indexOf(purposeId) > -1) {
 				this.vendorConsentData.selectedVendorIds[operation](id);
 			}
 		});
-		console.log("VENDORS AFTER", "PURPOSE", purposeId, "LIST", this.vendorConsentData.selectedVendorIds);
+		//console.log("VENDORS AFTER", "PURPOSE", purposeId, "LIST", this.vendorConsentData.selectedVendorIds);
 		this.selectPurpose(purposeId, isSelected);
 		this.storeUpdate();
 	};
 	selectPurpose = (purposeId, isSelected) => {
 		const {selectedPurposeIds} = this.vendorConsentData;
-		console.log("BEFORE", this.vendorConsentData.selectedPurposeIds);
+		//console.log("BEFORE", this.vendorConsentData.selectedPurposeIds);
 		if (isSelected) {
 			selectedPurposeIds.add(purposeId);
 		} else {
 			selectedPurposeIds.delete(purposeId);
 		}
-		console.log("AFTER", this.vendorConsentData.selectedPurposeIds);
+		//console.log("AFTER", this.vendorConsentData.selectedPurposeIds);
 		this.storeUpdate();
 	};
 	selectAllPurposes = (isSelected) => {
 		const {purposes = []} = this.vendorList || {};
 		const operation = isSelected ? 'add' : 'delete';
-		console.log("BEFORE", this.vendorConsentData.selectedPurposeIds);
+		//console.log("BEFORE", this.vendorConsentData.selectedPurposeIds);
 		purposes.forEach(({id}) => this.vendorConsentData.selectedPurposeIds[operation](id));
-		console.log("AFTER", this.vendorConsentData.selectedPurposeIds);
+		//console.log("AFTER", this.vendorConsentData.selectedPurposeIds);
 		this.storeUpdate();
 	};
 	selectCustomPurpose = (purposeId, isSelected) => {
