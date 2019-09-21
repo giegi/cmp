@@ -6,7 +6,7 @@
 This is the GEDI DIGITAL CMP.
 This CMP is a fork of the AppNexus CMP, modified and adapted to satisfy specific needs and to pass the IAB validation.
 
-You can find original fork here:
+You can find original repo here:
 https://github.com/appnexus/cmp
 
 This modified version has been certified by IAB according to TCF 1.1 and passes all the checks, automatic and manual ones, required by the TCF Validator.
