@@ -18,8 +18,7 @@ function handleConsentResult(cmp, {vendorListVersion: listVersion} = {}, {create
 		//console.log("[CMP LOG] - config", config);
 		//console.log("[CMP LOG] - publisherConsents", publisherConsents);
 	} catch (e) {
-		console.log("[CMP LOG] - handleConsentResult ERROR");
-		console.log(e);
+		//console.log("[CMP LOG] - handleConsentResult ERROR", e);
 	}
 	if (!created) {
 		log.debug('No consent data found. Showing consent tool');

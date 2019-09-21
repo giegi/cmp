@@ -18,6 +18,8 @@ export default class Cmp {
 		store.subscribe(this.storeChange);
 		this.processCommand.receiveMessage = this.receiveMessage;
 		this.commandQueue = [];
+		this.showStatus = { isBannerShowing:false, isModalShowing:false };
+		
 	}
 
 	commands = {
@@ -189,9 +191,18 @@ export default class Cmp {
 	storeChange = (_store) => {
 		//console.log("[CMP LOG] STORECHANGED - store passed object", _store)
 		//console.log("[CMP LOG] STORE VISIBILITY: " + _store.isModalShowing + " = " + _store.isBannerShowing);
-		if(_store.isModalShowing === true || _store.isBannerShowing === true) {
-			this.notify("isShown");
+		//console.log("[CMP LOG] this.showStatus VISIBILITY: " + this.showStatus.isModalShowing + " = " + this.showStatus.isBannerShowing);
+		if(_store.isBannerShowing === false && this.showStatus.isBannerShowing === true) {
+			this.notify("isBannerHidden");
+		} else if(_store.isBannerShowing === true && this.showStatus.isBannerShowing === false) {
+			this.notify("isBannerShown");
+		} else if(_store.isModalShowing === true && this.showStatus.isModalShowing === false) {
+			this.notify("isModalShown");
+		} else if(_store.isModalShowing === false && this.showStatus.isModalShowing === true) {
+			this.notify("isModalHidden");
 		}
+		this.showStatus.isModalShowing = _store.isModalShowing;
+		this.showStatus.isBannerShowing = _store.isBannerShowing;
 	};
 	generateConsentString = () => {
 		const {
@@ -261,7 +272,7 @@ export default class Cmp {
 	 * @param {*} parameter Expected parameter for command
 	 */
 	processCommand = (command, parameter, callback) => {
-		console.log("[CMP LOG] COMMAND RECEIVED", "COMMAND", command, "persistedVendorConsentData", this.store.persistedVendorConsentData, "persistedPublisherConsentData", this.store.persistedPublisherConsentData);
+		//console.log("[CMP LOG] COMMAND RECEIVED", "COMMAND", command, "persistedVendorConsentData", this.store.persistedVendorConsentData, "persistedPublisherConsentData", this.store.persistedPublisherConsentData);
 		if (typeof this.commands[command] !== 'function') {
 			log.error(`Invalid CMP command "${command}"`);
 		}

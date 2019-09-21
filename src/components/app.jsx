@@ -32,7 +32,7 @@ export default class App extends Component {
                 
 	};
 	onGeneralAcceptance = state => {
-		console.log("ENDED BY HERE", state);    
+		//console.log("ENDED BY HERE", state);    
 	};
         
 	onSelectPurpose = purposeItem => {
@@ -66,9 +66,9 @@ export default class App extends Component {
         onSelectCustomPurpose = (customPurposeItem, _visitedCustomPurposes) => {
 		
 		const { store } = this.props;
-                console.log("customPurposeItem", customPurposeItem);    
-                console.log("_visitedCustomPurposes BEFORE", _visitedCustomPurposes);
-                console.log("Current State", _visitedCustomPurposes.hasOwnProperty(customPurposeItem.id));             
+                //console.log("customPurposeItem", customPurposeItem);    
+                //console.log("_visitedCustomPurposes BEFORE", _visitedCustomPurposes);
+                //console.log("Current State", _visitedCustomPurposes.hasOwnProperty(customPurposeItem.id));             
                 let stateCustomPurpose = null;
                 if(_visitedCustomPurposes.hasOwnProperty(customPurposeItem.id) === true) {
                     if(_visitedCustomPurposes[customPurposeItem.id] === true) {
@@ -91,10 +91,7 @@ export default class App extends Component {
                 });
                 store.selectCustomPurpose(customPurposeItem.id, stateCustomPurpose);
                 const { visitedCustomPurposes } = this.state;
-                console.log("_visitedCustomPurposes AFTER", _visitedCustomPurposes);
-                console.log("visitedCustomPurposes AFTER", visitedCustomPurposes);                
                 store.storeUpdate();
-                // store and persist data [....to do....]
 	};
 
 	updateState = (store) => {

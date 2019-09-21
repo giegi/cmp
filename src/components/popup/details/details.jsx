@@ -41,7 +41,7 @@ export default class Details extends Component {
 		onSelectPurpose(purposeItem);
 	};
         handleGeneralPurposeClick = state => {
-            console.log("Clicked on general acceptance....", state, this.props);
+            //console.log("Clicked on general acceptance....", state, this.props);
             this.props.store.selectAllPurposesAndVendors(state);
 	};
         handleCustomPurposeClick = (customPurposeItem, visitedCustomPurposes) => {
@@ -57,7 +57,7 @@ export default class Details extends Component {
         visitedCustomPurposes = {};
 
 	render(props, state) {
-            console.log("renderizzato");
+            //console.log("renderizzato");
 		const {
 			onSave,
 			onClose,
@@ -94,20 +94,20 @@ export default class Details extends Component {
 		const { purposes: customPurposes = [] } = customPurposeList;
                 
                 for(var prop in this.visitedCustomPurposes) {
-                    console.log("RESULT", prop);
+                    //console.log("[CMP LOG] details.jsx...RESULT", prop);
                 }
-                console.log("VisitedCustomPurposes is empty?", JSON.stringify(this.visitedCustomPurposes) === JSON.stringify({}));
+                //console.log("[CMP LOG] details.jsx...VisitedCustomPurposes is empty?", JSON.stringify(this.visitedCustomPurposes) === JSON.stringify({}));
                 
-                console.log("DETAILS.jsx visitedCustomPurposes (1)", this.visitedCustomPurposes, this.visitedCustomPurposes.length);        
-                console.log("DETAILS.jsx customPurposeList", customPurposeList);                
-                console.log("DETAILS.jsx publisherConsentData", publisherConsentData.selectedCustomPurposeIds);
+                //console.log("[CMP LOG] details.jsx...visitedCustomPurposes (1)", this.visitedCustomPurposes, this.visitedCustomPurposes.length);        
+                //console.log("[CMP LOG] details.jsx...customPurposeList", customPurposeList);                
+                //console.log("[CMP LOG] details.jsx...publisherConsentData", publisherConsentData.selectedCustomPurposeIds);
                 if(JSON.stringify(this.visitedCustomPurposes) === JSON.stringify({}) === true) {
                     publisherConsentData.selectedCustomPurposeIds.forEach( a => {
-                        //console.log(a);
+                        //console.log("[CMP LOG] details.jsx...", a);
                         this.visitedCustomPurposes[a] = true; 
                     });
                 }                
-                console.log("DETAILS.jsx visitedCustomPurposes (2)", this.visitedCustomPurposes, this.visitedCustomPurposes.length);
+                //console.log("[CMP LOG] details.jsx...visitedCustomPurposes (2)", this.visitedCustomPurposes, this.visitedCustomPurposes.length);
                 
 		const formattedVendors = vendors
 			.map(vendor => ({

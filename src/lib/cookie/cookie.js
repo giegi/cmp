@@ -273,7 +273,7 @@ function writeGlobalVendorConsentCookie(vendorConsentData) {
  * @returns Promise resolved with decoded cookie object
  */
 function readLocalVendorConsentCookie() {
-	console.log("[CMP LOG] - readLocalVendorConsentCookie", this);
+	//console.log("[CMP LOG] - readLocalVendorConsentCookie", this);
 	const cookie = readCookie(VENDOR_CONSENT_COOKIE_NAME);
 	log.debug('Read consent data from local cookie', cookie);
 	return Promise.resolve(cookie && decodeVendorConsentData(cookie));
@@ -294,7 +294,7 @@ function writeLocalVendorConsentCookie(vendorConsentData) {
 }
 
 function readVendorConsentCookie() {
-	console.log("[CMP LOG - store consent globally", config.storeConsentGlobally);
+	//console.log("[CMP LOG - store consent globally", config.storeConsentGlobally);
 	return config.storeConsentGlobally ?
 		readGlobalVendorConsentCookie() : readLocalVendorConsentCookie();
 }

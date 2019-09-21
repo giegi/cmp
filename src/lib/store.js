@@ -329,7 +329,7 @@ export default class Store {
 		this.storeUpdate();
 	};
 	updateVendorList = vendorList => {
-		console.log("[CMP LOG] updateVendorList");
+		//console.log("[CMP LOG] updateVendorList");
 		const {
 			allowedVendorIds
 		} = this;
@@ -367,7 +367,7 @@ export default class Store {
 	};
 	updateCustomPurposeList = customPurposeList => {
 		const {created} = this.publisherConsentData;
-		console.log("[CMP LOG] updateCustomPurposesList");
+		//console.log("[CMP LOG] updateCustomPurposesList");
 		// If publisher consent has never been persisted set the default selected status
 		if (!created) {
 			const {purposes = [], } = customPurposeList || {};
