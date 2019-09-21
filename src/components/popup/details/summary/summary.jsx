@@ -70,24 +70,23 @@ export default class Summary extends Component {
 			<div class={style.summary}>
 				
 				<div class={detailsStyle.title} style={{color: textColor}}>
-					<SummaryLabel localizeKey='title'>Learn more about how information is being used?</SummaryLabel>
+					<SummaryLabel localizeKey='title'></SummaryLabel>
 				</div>
 				<div class={detailsStyle.description}>
 					<SummaryLabel localizeKey='description'>
-					We and select companies may access and use your information for the below purposes. You may
-					customize your choices below or continue using our site if you're OK with the purposes.
+					
 					</SummaryLabel>
 				</div>
                                 
                 <div class={style.customPurposeSeparator}>
-					<LocalLabel localizeKey='links.purposes.titleGeneral'>Third Party Vendors</LocalLabel>
+					<LocalLabel localizeKey='links.purposes.titleGeneral'></LocalLabel>
 				</div>                
 				<div class={style.purposeItems}>
 					{purposes.map((purposeItem, index) => (
 						<div class={style.purposeItem} style={{borderColor: dividerColor}}>
 							<span class={style.purposeTitle}><PurposesLabel localizeKey={`purpose${purposeItem.id}.menu`}>{purposeItem.name}</PurposesLabel></span>
 							<a class={style.learnMore} onClick={this.handlePurposeItemClick(purposeItem)} style={{color: textLinkColor}}>
-								<SummaryLabel localizeKey='detailLink'>Learn More & Set Preferences</SummaryLabel>
+								<SummaryLabel localizeKey='detailLink'></SummaryLabel>
 							</a>
 						</div>
 					))}
@@ -98,15 +97,15 @@ export default class Summary extends Component {
 				<div class={detailsStyle.description} style="display:none; margin-bottom: 30px;">
 					<center>
 						<a id="acceptGeneral" class={detailsStyle.selectAllConds} onClick={this.handleGeneralePurposeClick(true)} style="background-color: #FFFFFF;display: block;float: left;width: 40%;margin: 0 5%0 5%;">
-							<SummaryLabel localizeKey='acceptAll'>Accetta Tutto</SummaryLabel>
+							<SummaryLabel localizeKey='acceptAll'></SummaryLabel>
 						</a>
 						<a id="denyGeneral" class={detailsStyle.selectAllConds}  onClick={this.handleGeneralePurposeClick(false)} style={{color: textLinkColor}} style="background-color: #FFFFFF;display: block;float: left;width: 40%;margin: 0 5%0 5%;">
-							<SummaryLabel localizeKey='denyAll'>Rifiuta Tutto</SummaryLabel>
+							<SummaryLabel localizeKey='denyAll'></SummaryLabel>
 						</a>
 					</center>
 				</div>
 				<div class={style.customPurposeSeparator}>
-					<LocalLabel localizeKey='links.purposes.titleCustom'>Other</LocalLabel>
+					<LocalLabel localizeKey='links.purposes.titleCustom'></LocalLabel>
 				</div>
 				<div class={style.customPurposeItems}>
 					{customPurposes.map((customPurposeItem, zindex) => (
@@ -130,23 +129,22 @@ export default class Summary extends Component {
 				</div>
                                 
 				<div class={detailsStyle.title} style={{color: textColor}}>
-					<SummaryLabel localizeKey='who.title'>Who is using this information?</SummaryLabel>
+					<SummaryLabel localizeKey='who.title'></SummaryLabel>
 				</div>
 				<div class={detailsStyle.description}>
 					<SummaryLabel localizeKey='who.description'>
-						We and pre-selected companies will use your information. You can see each company in
-						the links above or
+						
 					</SummaryLabel>&nbsp;
-					<a onClick={onVendorListClick} style={{color: textLinkColor}}><SummaryLabel localizeKey='who.link'>see the complete list here.</SummaryLabel></a>
+					<a onClick={onVendorListClick} style={{color: textLinkColor}}><SummaryLabel localizeKey='who.link'></SummaryLabel></a>
 				</div>
 				<div class={detailsStyle.title} style={{color: textColor}}>
-					<SummaryLabel localizeKey='what.title'>What information is being used?</SummaryLabel>
+					<SummaryLabel localizeKey='what.title'></SummaryLabel>
 				</div>
 				<div class={detailsStyle.description}>
 					<SummaryLabel localizeKey='what.description'>
-						Different companies use different information,
+						
 					</SummaryLabel>&nbsp;
-					<a onClick={onPurposeListClick} style={{color: textLinkColor}}><SummaryLabel localizeKey='what.link'>see the complete list here.</SummaryLabel></a>
+					<a onClick={onPurposeListClick} style={{color: textLinkColor}}><SummaryLabel localizeKey='what.link'></SummaryLabel></a>
 				</div>
 			</div>
 		);

@@ -90,13 +90,11 @@ export default class Banner extends Component {
 						<div class={style.info}>
 							<div class={style.title} style={{ color: textColor }}>
 								<img class={style.logoimage} src="https://gedi.mgr.consensu.org/kwcmp/icon_gedidigital.jpg" />
-								<LocalLabel localizeKey='title'>Ads help us run this site</LocalLabel>
+								<LocalLabel localizeKey='title'></LocalLabel>
 								<br clear="all" />
 							</div>
 							<LocalLabel localizeKey='description'>
-								When you visit our site, pre-selected companies may access and use certain
-								information on your device and about this site to serve relevant ads or personalized content. If you click on "CONTINUE TO SITE", you accept this use. If you want to know more or personalize your choices, specifying which use you want to give consent to, click on the two other buttons. You will be able to change again your preferences by clicking on the link Cookie Preferences at the bottom of the page.
-							</LocalLabel>
+								</LocalLabel>
 							
 							<div class={style.options}>
 								<div
@@ -106,8 +104,7 @@ export default class Banner extends Component {
 										class={style.detailExpand}
 									>
 										<ChevronIcon color={textLinkColor}/>
-										<LocalLabel localizeKey='links.data.title'>Information that may be
-											used
+										<LocalLabel localizeKey='links.data.title'>
 										</LocalLabel>
 									</a>
 									<div
@@ -115,22 +112,7 @@ export default class Banner extends Component {
 										style={{ color: textLightColor }}
 									>
 										<LocalLabel localizeKey='links.data.description'>
-											<ul>
-												<li>Type of browser and its settings</li>
-												<li>Information about the device's operating system</li>
-												<li>Cookie information</li>
-												<li>Information about other identifiers assigned to the device</li>
-												<li>The IP address from which the device accesses a client's website or
-													mobile application
-												</li>
-												<li>Information about the user's activity on that device, including web
-													pages and mobile apps visited or used
-												</li>
-												<li>Information about the geographic location of the device when it
-													accesses
-													a website or mobile application
-												</li>
-											</ul>
+											
 										</LocalLabel>
 									</div>
 								</div>
@@ -141,8 +123,7 @@ export default class Banner extends Component {
 										class={style.detailExpand}
 									>
 										<ChevronIcon color={textLinkColor} />
-										<LocalLabel localizeKey='links.purposes.title'>Purposes for storing
-											information</LocalLabel>
+										<LocalLabel localizeKey='links.purposes.title'></LocalLabel>
 									</a>
 
 									<div
@@ -169,7 +150,7 @@ export default class Banner extends Component {
 										class={style.detailExpand}
 									>
 										<ChevronIcon color={textLinkColor} />
-										<LocalLabel localizeKey='links.features.title'>Features</LocalLabel>
+										<LocalLabel localizeKey='links.features.title'></LocalLabel>
 									</a>
 
 									<div
@@ -178,19 +159,19 @@ export default class Banner extends Component {
 									>
 										<ul>
 												<li class={style.purposeItem}>
-													<LocalLabel class={style.featureName} localizeKey='links.features.feature1.name'>Matching Data to Offline Sources</LocalLabel>
+													<LocalLabel class={style.featureName} localizeKey='links.features.feature1.name'></LocalLabel>
 													<br />
-													<LocalLabel class={style.featureDescription} localizeKey='links.features.feature1.description'>Combining data from offline sources that were initially collected in other contexts.</LocalLabel>
+													<LocalLabel class={style.featureDescription} localizeKey='links.features.feature1.description'></LocalLabel>
 												</li>
 												<li class={style.purposeItem}>
-													<LocalLabel class={style.featureName} localizeKey='links.features.feature2.name'>Linking Devices</LocalLabel>
+													<LocalLabel class={style.featureName} localizeKey='links.features.feature2.name'></LocalLabel>
 													<br />
-													<LocalLabel class={style.featureDescription}  localizeKey='links.features.feature2.description'>Allow processing of a user's data to connect such user across multiple devices.</LocalLabel>
+													<LocalLabel class={style.featureDescription}  localizeKey='links.features.feature2.description'></LocalLabel>
 												</li>
 												<li class={style.purposeItem}>
-													<LocalLabel class={style.featureName} localizeKey='links.features.feature3.name'>Precise Geographic Location Data</LocalLabel>
+													<LocalLabel class={style.featureName} localizeKey='links.features.feature3.name'></LocalLabel>
 													<br />
-													<LocalLabel class={style.featureDescription}  localizeKey='links.features.feature3.description'>Allow processing of a user's precise geographic location data in support of a purpose for which that certain third party has consent.</LocalLabel>
+													<LocalLabel class={style.featureDescription}  localizeKey='links.features.feature3.description'></LocalLabel>
 												</li>
 										</ul>
 									</div>
@@ -199,7 +180,6 @@ export default class Banner extends Component {
 								<div class={style.optionDetails} style={{ color: textLightColor }}>	
 									<a class={style.learnMore} onClick={this.handleVendorListClick} style={{color: textLinkColor}}>
 										<LocalLabel localizeKey='descriptionvendorlink'>
-											View pre-selected companies list
 										</LocalLabel>
 									</a>
 								</div>
@@ -208,12 +188,12 @@ export default class Banner extends Component {
 						<div class={style.consent}>
                                                         <a class={style.learnMore} href="javascript:window.kw_customizeInfoPrivacy()"
 							   style={{ color: primaryColor, borderColor: primaryColor }}>
-								<LocalLabel localizeKey='links.infoprivacy'>Know More</LocalLabel>
+								<LocalLabel localizeKey='links.infoprivacy'></LocalLabel>
 							</a>
                                                       
 							<a class={style.learnMore} onClick={this.handleLearnMore}
 							   style={{ color: primaryColor, borderColor: primaryColor }}>
-								<LocalLabel localizeKey='links.manage'>Manage Your Choices</LocalLabel>
+								<LocalLabel localizeKey='links.manage'></LocalLabel>
 							</a>
                                                       
 							<a
@@ -225,7 +205,7 @@ export default class Banner extends Component {
 									color: primaryTextColor
 								}}
 							>
-								<LocalLabel localizeKey='links.accept'>Continue to site</LocalLabel>
+								<LocalLabel localizeKey='links.accept'></LocalLabel>
 							</a>
 						</div>
 					</div>

@@ -7,7 +7,8 @@ export default class Popup extends Component {
 
 	handleClose = () => {
 		const {store} = this.props;
-		store.toggleModalShowing(false) 
+        this.props.onChangeDetailsPanel(0);
+		store.toggleModalShowing(false);
 	};
 
 	render(props, state) {
@@ -16,9 +17,8 @@ export default class Popup extends Component {
 			onSave,
 			theme,
 			onChangeDetailsPanel,
-			onSelectPurpose,
-                        
-                        onSelectCustomPurpose,
+			onSelectPurpose,            
+            onSelectCustomPurpose,
 			selectedDetailsPanelIndex,
 			selectedPurposeDetails,
 		} = props;
@@ -27,7 +27,7 @@ export default class Popup extends Component {
                 
 		return (
 			<div
-				class={style.popup} 
+				class={style.popup}
 				style={{display: isModalShowing ? 'flex' : 'none'}}
 			>
 				<div

@@ -13,7 +13,7 @@ export default class App extends Component {
 		store: this.props.store,
 		selectedDetailsPanelIndex: SECTION_PURPOSES,
 		visitedPurposes: {},
-                visitedCustomPurposes: {},
+		visitedCustomPurposes: {},
 	};
 
 	onSave = () => {
@@ -31,9 +31,9 @@ export default class App extends Component {
 		});
                 
 	};
-        onGeneralAcceptance = state => {
-            console.log("ENDED BY HERE", state);    
-        };
+	onGeneralAcceptance = state => {
+		console.log("ENDED BY HERE", state);    
+	};
         
 	onSelectPurpose = purposeItem => {
 		const { visitedPurposes } = this.state;

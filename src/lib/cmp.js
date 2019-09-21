@@ -14,6 +14,8 @@ export default class Cmp {
 		this.cmpReady = false;
 		this.eventListeners = {};
 		this.store = store;
+		//console.log("[CMP LOG] store change callback is", this.storeChange);
+		store.subscribe(this.storeChange);
 		this.processCommand.receiveMessage = this.receiveMessage;
 		this.commandQueue = [];
 	}
@@ -184,7 +186,13 @@ export default class Cmp {
 			callback(true);
 		}
 	};
-
+	storeChange = (_store) => {
+		//console.log("[CMP LOG] STORECHANGED - store passed object", _store)
+		//console.log("[CMP LOG] STORE VISIBILITY: " + _store.isModalShowing + " = " + _store.isBannerShowing);
+		if(_store.isModalShowing === true || _store.isBannerShowing === true) {
+			this.notify("isShown");
+		}
+	};
 	generateConsentString = () => {
 		const {
 			persistedVendorConsentData,

@@ -125,17 +125,19 @@ export default class Details extends Component {
 					<Panel selectedIndex={selectedPanelIndex}>
 						<Summary
 							purposes={purposes}
-                                                        customPurposes={customPurposes}
-                                                        visitedCustomPurposes={this.visitedCustomPurposes}
-                                                        publisherConsentData={publisherConsentData}
+                            customPurposes={customPurposes}
+                            visitedCustomPurposes={this.visitedCustomPurposes}
+                            publisherConsentData={publisherConsentData}
 							onPurposeClick={this.handlePurposeClick}
-                                                        onCustomPurposeClick={this.handleCustomPurposeClick}
-                                                        onGeneralPurposeClick={this.handleGeneralPurposeClick}
+                            onCustomPurposeClick={this.handleCustomPurposeClick}
+                            onGeneralPurposeClick={this.handleGeneralPurposeClick}
 							onVendorListClick={this.handlePanelClick(SECTION_VENDOR_LIST)}
 							onPurposeListClick={this.handlePanelClick(SECTION_PURPOSE_LIST)}
 							theme={theme}
 						/>
 						<VendorList
+                            purposes={purposes}
+                            customPurposes={customPurposes}
 							vendors={formattedVendors}
 							onBack={this.handleBack}
 							theme={theme}
@@ -162,14 +164,14 @@ export default class Details extends Component {
 						onClick={this.handleBack}
 						backgroundColor={secondaryColor}
 						textColor={secondaryTextColor}
-					>&lt; <LocalLabel localizeKey='back'>Back</LocalLabel></Button>
+					>&lt; <LocalLabel localizeKey='back'></LocalLabel></Button>
 					}
 					<Button
 						class={style.save}
 						onClick={onSave}
 						backgroundColor={primaryColor}
 						textColor={primaryTextColor}
-					><LocalLabel localizeKey='save'>Continue Using Site</LocalLabel></Button>
+					><LocalLabel localizeKey='save'></LocalLabel></Button>
 				</div>
 			</div>
 		);

@@ -8,106 +8,143 @@
  */
 export default {
 	en: {
+		intro: {
+			title: 'Thanks for visiting',
+			description: 'In order to run a successful website, we and certain third parties are setting cookies and accessing and storing information on your device for various purposes. Various third parties are also collecting data to show you personalized content and ads. Some third parties require your consent to collect data to serve you personalized content and ads.',
+			showPurposes: 'Manage your choices',
+			acceptAll: 'Got it, thanks!'
+		},
 		banner: {
-			title: '',
-			description: '',
-			descriptionvendorlink: '',
+			title: 'Ads help us run this site',
+			description: 'When you visit our site, pre-selected companies may access and use certain information on your device and about this site to serve relevant ads or personalized content. If you click on "CONTINUE TO SITE", you accept this use. If you want to know more or personalize your choices, specifying which use you want to give consent to, click on the two other buttons. You will be able to change again your preferences by clicking on the link Cookie Preferences at the bottom of the page.',
+			descriptionvendorlink: 'View pre-selected companies lists',
 			links: {
 				data: {
-					title: '',
-					description: ''
+					title: 'Information that may be used',
+					description: '<ul><li>Type of browser and its settings</li> <li>Information about the device\'s operating system</li> <li>Cookie information</li><li>Information about other identifiers assigned to the device</li> <li>The IP address from which the device accesses a client\'s website or mobile application</li> <li>Information about the user\'s activity on that device, including web pages and mobile apps visited or used </li> <li>Information about the geographic location of the device when it accesses a website or mobile application</li></ul>'
 				},
 				purposes: {
-					title: '',
+					title: 'Purposes for storing information',
 					description: '',
-					titleCustom: '',
-					titleGeneral: ''
+					titleCustom: 'Other',
+					titleGeneral: 'Third Party Vendors'
 				},
 				features: {
-					title: '',
+					title: 'Features',
 					feature1: {
-						name: '',
-						description: ''
+						name: 'Matching Data to Offline Sources',
+						description: 'Combining data from offline sources that were initially collected in other contexts.'
 					},
 					feature2: {
-						name: '',
-						description: ''
+						name: 'Linking Devices',
+						description: 'Allow processing of a user\'s data to connect such user across multiple devices.'
 					},
 					feature3: {
-						name: '',
-						description: ''
+						name: 'Precise Geographic Location Data',
+						description: 'Allow processing of a user\'s precise geographic location data in support of a purpose for which that certain third party has consent.'
 					}
 				},
-				manage: '',
-				accept: '',
-				infoprivacy: ''
+				manage: 'Manage Your Choices',
+				accept: 'Continue to site',
+				infoprivacy: 'Know More'
 			}
 		},
 		summary: {
-			title: '',
-			description: '',
+			title: 'Learn more about how information is being used?',
+			description: 'We and select companies may access and use your information for the below purposes. You may customize your choices below or continue using our site if you\'re OK with the purposes.',
+			detailLink: 'Learn More & Set Preferences',
+			acceptAll: 'Accept All',
+			denyAll: 'Deny All',
 			who: {
-				title: '',
-				description: ''
+				title: 'Who is using this information?',
+				description: 'We and pre-selected companies will use your information. You can see each company in the links above or',
+				link: 'see the complete list here'
 			},
 			what: {
-				title: '',
-				description: ''
+				title: 'What information is being used?',
+				description: 'Different companies use different information,',
+				link: 'see the complete list here.'
 			}
 		},
 		details: {
-			back: '',
-			save: ''
+			back: 'Back',
+			save: 'Continue Using Site'
 		},
 		purposes: {
-			title: '',
-			description: '',
-			back: '',
-			optoutdDescription: ``,
+			title: 'What information is being used?',
+			description: 'Below is a complete list of the information that may be gathered.',
+			back: 'Customize how this data is used from the previous page',
+			items: '<ul><li>Type of browser and its settings</li><li>Information about the device\'s operating system</li><li>Cookie information</li><li>Information about other identifiers assigned to the device</li><li>The IP address from which the device accesses a client\'s website or mobile application</li><li>Information about the user\'s activity on that device, including web pages and mobile apps visited or used</li><li>Information about the geographic location of the device when it accesses a website or mobile application</li></ul>',
+			optoutdDescription: `Depending on the type of data they collect, use,
+						and process and other factors including privacy by design, certain partners rely on your consent while others require you to opt-out.
+						For information on each vendor and to exercise your choices, see below.
+						Or to opt-out, visit the <a href='http://optout.networkadvertising.org/?c=1#!/' target='_blank' style={{color: textLinkColor}}>NAI</a>
+						, <a href='http://optout.aboutads.info/?c=2#!/' target='_blank' style={{color: textLinkColor}}>DAA</a>
+						, or <a href='http://youronlinechoices.eu/' target='_blank' style={{color: textLinkColor}}>EDAA</a> sites.`,
 			purpose1: {
+				menu: '',
+				title: '',
 				description: ''
 			},
 			purpose2: {
+				menu: '',
+				title: '',
 				description: ''
 			},
 			purpose3: {
+				menu: '',
+				title: '',
 				description: ''
 			},
 			purpose4: {
+				menu: '',
+				title: '',
 				description: ''
 			},
 			purpose5: {
+				menu: '',
+				title: '',
 				description: ''
 			}
 		},
 		features: {
+			title: '',
 			feature1: {
-				name: '',
-				description: ''
+				name: 'Matching Data to Offline Sources',
+				description: 'Combining data from offline sources that were initially collected in other contexts.'
 			},
 			feature2: {
-				name: '',
-				description: ''
+				name: 'Linking Devices',
+				description: 'Allow processing of a user\'s data to connect such user across multiple devices.'
 			},
 			feature3: {
-				name: '',
-				description: ''
+				name: 'Precise Geographic Location Data',
+				description: 'Allow processing of a user\'s precise geographic location data in support of a purpose for which that certain third party has consent.'
 			}
 		},
 		vendors: {
-			title: '',
-			description: '',
-			accept: '',
+			title: 'Who is using this information?',
+			description: 'Here is the complete list of companies who will use your information. Please view their privacy policy for more details.',
+			accept: 'Allow',
 			acceptAll: '',
 			acceptNone: '',
 			optOut: '',
-			back : ''
+			back : 'Customize how these companies use data from the previous page',
+			legint: 'Legitimate Interest',
+			purposes: 'Purposes',
+			features: 'Features'
 		},
-		Vlegint: '',
-		Vpurposes: '',
-		Vfeatures: ''
+		Vlegint: 'Legitimate Interest',
+		Vpurposes: 'Purposes',
+		Vfeatures: 'Features'
 	},
 	it: {
+		intro: {
+			title: 'Grazie per aver visitato ',
+			description: 'Su questo sito utilizziamo cookie tecnici e, previo tuo consenso, cookie di profilazione, nostri e di terze parti, per raccogliere informazioni statistiche e mostrarti pubblicità personalizzata attraverso l\'analisi della tua navigazione. ',
+			showPurposes: 'Personalizza le tue scelte',
+			acceptAll: 'Continua la navigazione'
+		},
 		banner: {
 			title: 'Uso dei cookie',
 			description: 'Su questo sito utilizziamo cookie tecnici e, previo tuo consenso, cookie di profilazione, nostri e di terze parti, per raccogliere informazioni statistiche e mostrarti pubblicità personalizzata attraverso l\'analisi della tua navigazione. Se clicchi su CONTINUA LA NAVIGAZIONE, accetti tale utilizzo. Se invece saperne di più o personalizzare le tue scelte prestando il consenso solo ad alcuni utilizzi, clicca su uno dei due pulsanti. <br />Se vorrai successivamente modificare le tue preferenze potrai falro cliccando sul link Preferenze Cookie nel footer della pagina.',
@@ -160,6 +197,8 @@ export default {
 			title: 'Ulteriori informazioni su come vengono utilizzate le informazioni.',
 			description: 'Noi e alcune società selezionate possiamo accedere e utilizzare le tue informazioni per i seguenti scopi. Puoi personalizzare le tue opzioni qui sotto o continuare a utilizzare il nostro sito se sei d\'accordo con gli scopi.',
 			detailLink: 'Maggiori informazioni',
+			acceptAll: 'Accetta Tutto',
+			denyAll: 'Rifiuta Tutto',
 			who:{
 				title:'Chi sta usando queste informazioni?',
 				description:'Noi e le società preselezionate utilizziamo le tue informazioni. Puoi vedere ciascuna compagnia nei link sopra.',
@@ -171,20 +210,13 @@ export default {
 				link:'Guarda l\'elenco completo qui.'
 			}
 		},
+        
 		purposes: {
 			title: 'Dati raccolti',
 			description: 'Di seguito è riportato l\'elenco dei dati che possono essere raccolti:',
 			back: 'Configura come vengono utilizzati questi dati',
 			optoutdDescription: 'A seconda del tipo di dati che raccolgono, utilizzano e elaborano, e di altri fattori, inclusa la privacy in base alla progettazione, alcuni partner fanno affidamento sul loro consenso, mentre altri richiedono che vengano esclusi. Per informazioni su ciascun fornitore ed esercitare le tue scelte, vedi sotto. O per rinunciare, visitare i siti NAI, DAA o EDAA.',
-			items: `<ul>
-						<li>Tipo e configurazione del browser</li>
-						<li>Informazioni sul sistema operativo</li>
-						<li>Dati dei cookie</li>
-						<li>Informazioni sul dispositivo utilizzato</li>
-						<li>L'indirizzo IP da cui il dispositivo accede al sito Web</li>
-						<li>Informazioni sull'attività dell'utente su questo dispositivo, comprese le pagine Web visitate</li>
-						<li>Informazioni sulla posizione del dispositivo quando si accede al sito Web</li>
-					</ul>`,
+			items: '<ul><li>Tipo e configurazione del browser</li><li>Informazioni sul sistema operativo</li><li>Dati dei cookie</li><li>Informazioni sul dispositivo utilizzato</li><li>L\'indirizzo IP da cui il dispositivo accede al sito Web</li><li>Informazioni sull\'attività dell\'utente su questo dispositivo, comprese le pagine Web visitate</li><li>Informazioni sulla posizione del dispositivo quando si accede al sito Web</li></ul>',
 			purpose1: {
 				menu: 'Archiviazione e accesso alle informazioni',
 				title: 'Archiviazione e accesso alle informazioni',

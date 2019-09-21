@@ -80,12 +80,7 @@ export default class Vendors extends Component {
 				<div class={detailsStyle.description} style={{color: textLightColor}}>
 					<p><PurposesLabel localizeKey={`purpose${selectedPurposeId}.description`}>{description}</PurposesLabel></p>
 					<p><PurposesLabel localizeKey='optoutdDescription'>
-						Depending on the type of data they collect, use,
-						and process and other factors including privacy by design, certain partners rely on your consent while others require you to opt-out.
-						For information on each vendor and to exercise your choices, see below.
-						Or to opt-out, visit the <a href='http://optout.networkadvertising.org/?c=1#!/' target='_blank' style={{color: textLinkColor}}>NAI</a>
-						, <a href='http://optout.aboutads.info/?c=2#!/' target='_blank' style={{color: textLinkColor}}>DAA</a>
-						, or <a href='http://youronlinechoices.eu/' target='_blank' style={{color: textLinkColor}}>EDAA</a> sites.
+						
 					</PurposesLabel></p>
 				</div>
 				<a class={style.toggleAll} onClick={this.handleToggleAll} style={{color: primaryColor}}>
@@ -108,7 +103,7 @@ export default class Vendors extends Component {
 									<td class={style.allowColumn}>
 										{purposeIds.indexOf(selectedPurposeDetails.id) > -1 ?
 											<span class={style.allowSwitch}>
-												<VendorsLabel localizeKey='accept'>Allow</VendorsLabel> <Switch
+												<VendorsLabel localizeKey='accept'></VendorsLabel> <Switch
 													color={primaryColor}
 													dataId={id}
 													isSelected={selectedVendorIds.has(id)}
