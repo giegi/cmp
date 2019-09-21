@@ -15,7 +15,7 @@ Feel free to modify for your own use.
 ### Installation
 
 ```sh
-git clone https://github.com/appnexus/cmp.git
+git clone https://github.com/giegi/cmp.git
 cd cmp
 yarn install
 ```
