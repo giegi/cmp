@@ -1,12 +1,21 @@
 [![Build Status](https://travis-ci.org/appnexus/cmp.svg?branch=master)](https://travis-ci.org/appnexus/cmp)
 
-# AppNexus CMP
-CMP is a tool for publishers to engage users of their properties and gather & store end user consent.
+# GEDI DIGITAL CMP
+
+
+This is the GEDI DIGITAL CMP.
+This CMP is a fork of the AppNexus CMP, modified and adapted to satisfy specific needs and to pass the IAB validation.
+
+This modified version has been certified by IAB according to TCF 1.1
+and passes all the checks, automatic and manual ones, required by the TCF Validator.
+
+This CMP contains some graphic personalizations. 
+Feel free to modify for your own use.
 
 ### Installation
 
 ```sh
-git clone https://github.com/appnexus/cmp.git
+git clone https://github.com/giegi/cmp.git
 cd cmp
 yarn install
 ```
